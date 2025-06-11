@@ -62,11 +62,11 @@ da <- list(y = y, x = x, size = size,
            beta2_prior = beta2_prior)
 
 ## Compile and load model ---
-if("ich_prevalence" %in% names(getLoadedDLLs())) {
-    dyn.unload(dynlib(here(dir_src, "ich_prevalence")))
+if("logreg" %in% names(getLoadedDLLs())) {
+    dyn.unload(dynlib(here(dir_src, "logreg")))
 }
-compile(here(dir_src, "ich_prevalence.cpp"))
-dyn.load(dynlib(here(dir_src, "ich_prevalence")))
+compile(here(dir_src, "logreg.cpp"))
+dyn.load(dynlib(here(dir_src, "logreg")))
 
 ## initial parameter values ---
 inits <- list(beta = c(2, 2))
@@ -76,7 +76,7 @@ inits <- list(beta = c(2, 2))
 obj <- MakeADFun(
     data = da,
     parameters = inits,
-    DLL = "ich_prevalence",
+    DLL = "logreg",
     hessian = TRUE
 )
 
