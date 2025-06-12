@@ -110,7 +110,7 @@ obj <- MakeADFun(
     data = input,
     parameters = parameters,
     # map = map,
-    random = "beta1",
+    random = c("beta0", "beta1"),
     DLL = "logreg"
 )
 
@@ -145,8 +145,8 @@ apply(mcmc_results, MARGIN = 2, FUN = sd)
 
 # plot parameters ----
 
-hist(mcmc_results[,1])
-traceplot(fit, pars=names(obj$par), inc_warmup=TRUE)
+# hist(mcmc_results[,1])
+# traceplot(fit, pars=names(obj$par), inc_warmup=TRUE)
 
 # plot fit ---
 
